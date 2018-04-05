@@ -71,7 +71,7 @@ fi
 
 
 
-#il interdit de taper plus qu'un type de licence ou de projet en une seule requette 
+#interdiction de taper plus qu'un type de licence ou de projet en une seule requette 
 
   
 
@@ -178,7 +178,7 @@ fi
 
 
 
-#interdire de taper un argument non defini 
+#interdire de taper un argument non defini pour que ca quitte avant de faire n'importe quoi 
 
 
 	    if [[ $2 != -CPP && $2 != -Latex && $2 != -BEAMER && $2 != -Python && $2 != -C && $2 != -MIT && $2 != -GPL && $2 != -git && $2 != "" ]]
@@ -204,7 +204,7 @@ fi
 		then 
 			
 					
-					
+#verification si l'argument est deja alloué klk part afin d'eviter la redandance				
 
 	             if [[ $2 = -git || $3 = -git || $4 = -git ]] 
 	             then 
@@ -212,11 +212,13 @@ fi
 
 		        if [[ $2 = -C || $3 = -C || $4 = -C ]] 
 		        then 
+#pour eviter la redendance de creation de repertoire projet 
 
 		    	if  [ -e $HOME/Bureau/$1 ]
 			then
 	    		cp -r $(echo $HOME)/.initdev/sources/main.c $HOME/Bureau/$1/
 			else 
+#creation de repertoire projet 
 			    mkdir  $HOME/Bureau/$1
 			    mkdir  $HOME/Bureau/$1/LICENSE
 			    mkdir  $HOME/Bureau/$1/Makefile
@@ -269,6 +271,7 @@ git init
 			fi
 		        cp -r $(echo $HOME)/.initdev/gitignores/tex $HOME/Bureau/$1/gitignores/
 git init
+#si l'utilisateur voudrait initialiser un depot git sans donner un type de projet ca donne un msg d'erreur 
 		        else
 		        echo "You Must Set a Project Type, please check the help : initdev –help" 
 		        exit 1
