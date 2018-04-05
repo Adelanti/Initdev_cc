@@ -1,11 +1,12 @@
 #! /bin/bash
 
+# Création de répertoire de logiciel 
 
 		cd $HOME
 
 		if  [ -e .initdev ]
 		then
-		echo ""
+		echo "Répertoire existe déja"
 		else	
 		mkdir $(echo $HOME)/.initdev
 		cp -r $(echo $HOME)/Bureau/initdev/bin $HOME/.initdev/ 
@@ -16,27 +17,33 @@
 		cp -r $(echo $HOME)/Bureau/initdev/main.sh $HOME/.initdev/
 		fi 
 
+#introduction d'aumoins un argument est obligatoire
+
 if  [ -z $1 ]  
 then
      echo "Expected arguments, please check the help : initdev –help"
      
      exit 1
- 
+#l'argument help ne doit etre suivis par aucun autre argument
 elif [ $1 = -help ] 
 then
 	if [[ $2 = "" ]] 
 	then
 
-     echo "— Name : "initdev" est un outil d'initialisation de projet de développement ."
+     echo "— Name :initdev "
+     echo "'initdeb' est un outil d'initialisation de projet de développement qui sert a faciliter la tache de création d'un nouveau projet ."
      echo "— Syntax : " 
-     echo " le programme doit se lancer par aumoins un argument qui porte le nom de projet   comme il est possible de le suivie par d'autre    arguments qui sert comme de pré-configurations de projet" 
+     echo " le programme doit se lancer par aumoins un argument qui porte le nom de projet comme il est possible de le suivie par d'autre    arguments qui sert comme de pré-configurations de projet" 
+     echo " le programme doit se lancer avec aumoins un argument qui porte le nom de projet comme il est possible de le suivie par d'autre    arguments qui sert comme de pré-configurations de projet"
+     echo " Il est a notifier aussi qu'avec l'argument '-git' il faut mentionner le type de projet afin que le logiciel puisse identifier le type de dépot git "
+     echo " l'arrangement de ces arguments ne doit pas etre confondus , ie impossible de mettre deux différetens type de projet ou de license comme arguments"
      echo "— args : "
      echo "-git : sert a initialiser un dépot git "
-     echo "-C : permet créer un projet en langage C"
-     echo "-CPP : permet créer un projet en langage CPP"  
-     echo "-Python : permet créer un projet en langage Python" 
-     echo "-Latex : permet créer un projet de rédaction en Latex" 
-     echo "-BEAMER : permet créer un projet de présentation en BEAMER" 
+     echo "-C : permet de créer un projet en langage C"
+     echo "-CPP : permet de créer un projet en langage CPP"  
+     echo "-Python : permet de créer un projet en langage Python" 
+     echo "-Latex : permet de créer un projet de rédaction en Latex" 
+     echo "-BEAMER : permet de créer un projet de présentation en BEAMER" 
      echo "-GPL : permet de crée un projet avec un type de licence GPL"
      echo "-MIT : permet de créer un projet avec un type de licence MIT "
      echo "— author : "
@@ -49,7 +56,7 @@ then
 	fi
 
 		
-
+#si l'utilisateur tape initdev et le nom de projet seulement initdev crée un nouveau projet sans préconfigurations
 else
 
 if [[ $2 = "" ]]
@@ -64,7 +71,7 @@ fi
 
 
 
-#il interdit de taper plus qu'un type de licence ou de projet
+#il interdit de taper plus qu'un type de licence ou de projet en une seule requette 
 
   
 
@@ -190,7 +197,7 @@ fi
 
 
 	     
-
+#interdiction de taper similair arguments
 	     else
 
 		if [[ $2 != $3 && $2 != $4 ]]
